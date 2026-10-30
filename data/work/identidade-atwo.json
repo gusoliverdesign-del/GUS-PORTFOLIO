@@ -1,0 +1,15 @@
+{
+  "title": "A TWO.",
+  "status": "Live",
+  "year": "2025",
+  "cover": "/media/capa.png",
+  "hero": "/media/ativo-4.png",
+  "description": "A TWO Studio é uma agência de marketing digital que atua em Fortaleza/CE e na Região Metropolitana. Fundada por Alice Helen, a agência tem como foco a produção de conteúdo e a cobertura de eventos em tempo real, expandindo sua atuação para as áreas de tráfego pago e gerenciamento de marketing digital.",
+  "categories": [
+    "data/categories/identidade-visual.json"
+  ],
+  "info": "A identidade visual da marca busca transmitir uma comunicação autêntica e sofisticada, incorporando elementos estéticos de inspiração vintage sem abrir mão da elegância e da modernidade. Seus elementos visuais foram pensados para expressar a personalidade da marca de forma harmônica, equilibrando o charme do passado com a contemporaneidade.",
+  "client": "Alice Helen",
+  "credits": "Luiz Gustavo",
+  "slug": "identidade-atwo"
+}
