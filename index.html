@@ -94,6 +94,11 @@
 .global-filters .filters{align-items:center}
 .filter-search{margin-left:auto}
 
+/* Project pages use the same side margins as the home feed. */
+#detail>.detail{padding-left:0;padding-right:0}
+@media(min-width:701px){#detail{padding-left:9px;padding-right:25px}}
+@media(max-width:700px){#detail{padding-left:12px;padding-right:12px}}
+
 .about-reference-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 0;color:#d2d1ce}
 .about-reference-card{background:#151515;border-radius:9px;padding:30px 32px;min-width:0}
 .about-overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
