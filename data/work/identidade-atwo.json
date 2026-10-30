@@ -11,5 +11,10 @@
   "info": "A identidade visual da marca busca transmitir uma comunicação autêntica e sofisticada, incorporando elementos estéticos de inspiração vintage sem abrir mão da elegância e da modernidade. Seus elementos visuais foram pensados para expressar a personalidade da marca de forma harmônica, equilibrando o charme do passado com a contemporaneidade.",
   "client": "Alice Helen",
   "credits": "Luiz Gustavo",
-  "slug": "identidade-atwo"
+  "slug": "identidade-atwo",
+  "gallery": [
+    "/media/ativo-10.png",
+    "/media/ativo-2.png",
+    "/media/ativo-3.png"
+  ]
 }
