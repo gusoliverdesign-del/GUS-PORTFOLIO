@@ -18,5 +18,33 @@
       "media/ativo-2.png",
       "media/ativo-3.png"
     ]
+  },
+  {
+    "id": "rawse",
+    "title": "RAW.SE",
+    "status": "Live",
+    "year": "2025",
+    "cats": [
+      "Identidade Visual",
+      "Naming"
+    ],
+    "image": "media/0901.png",
+    "heroImage": "media/0901.png",
+    "desc": "A Raw.se é uma marca de streetwear de Minas Gerais, com camisas oversized masculinas e femininas. Veste quem usa a roupa como posicionamento, não como validação social.",
+    "info": "Nascida em Minas Gerais, a Raw.se é uma marca de streetwear focada em camisas oversized masculinas e femininas, feitas para quem tem estilo de vida urbano, repertório estético refinado e uma relação consciente com a própria imagem. A identidade parte de um corvo, símbolo de presença e atitude, e se apoia em um contraste forte de amarelo e preto, tipografia condensada e texturas cruas. Segurança, autorespeito, presença e autocontrole guiam a marca sob o lema “All Right, All You”: vestir-se por convicção, não por tendência.",
+    "client": "Ramon Campos",
+    "credits": "Luiz Gustavo",
+    "gallery": [
+      "media/04.png",
+      "media/0101.png",
+      "media/0102.png",
+      "media/02.png",
+      "media/0501.png",
+      "media/0502.png",
+      "media/06.png",
+      "media/0701.png",
+      "media/0702.png",
+      "media/08.png"
+    ]
   }
 ]
