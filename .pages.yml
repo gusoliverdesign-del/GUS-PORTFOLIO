@@ -1,0 +1,207 @@
+media:
+  input: media
+  output: /media
+  rename: safe
+  categories: [image]
+  extensions: [jpg, jpeg, png, webp, gif, avif]
+
+content:
+  - name: categories
+    label: Categorias
+    type: collection
+    path: data/categories
+    format: json
+    filename: "{primary}.json"
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: status
+        label: Status
+        type: select
+        required: true
+        options:
+          values: [Live, Draft]
+    view:
+      primary: title
+      fields: [title, status]
+      search: [title]
+
+  - name: work
+    label: Trabalhos
+    type: collection
+    path: data/work
+    format: json
+    filename: "{fields.slug}.json"
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: status
+        label: Status
+        type: select
+        required: true
+        options:
+          values: [Live, Draft]
+      - name: year
+        label: Ano
+        type: string
+      - name: cover
+        label: Imagem de capa da home
+        description: Imagem usada no cartão do trabalho na página inicial.
+        type: image
+        required: true
+        options:
+          path: media
+          extensions: [jpg, jpeg, png, webp, gif, avif]
+      - name: hero
+        label: Imagem de capa do topo do trabalho
+        description: Capa grande exibida ao abrir a página do trabalho.
+        type: image
+        options:
+          path: media
+          extensions: [jpg, jpeg, png, webp, gif, avif]
+      - name: description
+        label: Descrição
+        type: text
+      - name: categories
+        label: Categoria
+        type: reference
+        options:
+          collection: categories
+          multiple: true
+          value: "{path}"
+          label: "{primary}"
+      - name: info
+        label: Informação
+        type: text
+      - name: client
+        label: Cliente
+        type: string
+      - name: credits
+        label: Créditos (nomes das pessoas)
+        type: text
+      - name: slug
+        label: Link name do projeto
+        description: "Use letras minúsculas, números e hífens, por exemplo identidade-cafe."
+        type: string
+        required: true
+        pattern: "^[a-z0-9-]+$"
+      - name: gallery
+        label: Imagens do projeto (feed)
+        description: "Adicione as imagens na ordem do layout: 1 imagem sozinha, depois 2 lado a lado, repetindo 1, 2, 1, 2. GIFs são aceitos."
+        type: image
+        options:
+          multiple: true
+          unique: true
+          path: media
+          extensions: [jpg, jpeg, png, webp, gif, avif]
+    view:
+      primary: title
+      fields: [title, status, year, categories]
+      search: [title, slug]
+
+  - name: media
+    label: Media (lista automática)
+    type: collection
+    path: data/media-index
+    format: json
+    filename: "{primary}.json"
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+      - name: title
+        label: Imagem / posição
+        type: string
+        readonly: true
+      - name: project
+        label: Nome do projeto
+        type: string
+        readonly: true
+      - name: category
+        label: Categoria
+        type: string
+        readonly: true
+      - name: work
+        label: Trabalho
+        type: reference
+        readonly: true
+        options:
+          collection: work
+          value: "{fields.slug}"
+          label: "{primary}"
+      - name: asset
+        label: Arquivo da imagem
+        type: image
+        readonly: true
+    view:
+      primary: title
+      fields: [project, category, work, asset]
+      search: [title, project, category]
+
+  - name: site
+    label: Textos e contatos do site
+    type: file
+    path: data/site.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: name
+        label: Nome
+        type: string
+      - name: role
+        label: Profissão
+        type: string
+      - name: bio
+        label: Apresentação curta
+        type: text
+      - name: email
+        label: E-mail de contato
+        type: string
+      - name: instagram
+        label: Link do Instagram
+        type: string
+      - name: behance
+        label: Link do Behance
+        type: string
+      - name: linkedin
+        label: Link do LinkedIn
+        type: string
+      - name: location
+        label: Cidade e região
+        type: string
+      - name: aboutTitle
+        label: Título da seção Sobre
+        type: string
+      - name: aboutText1
+        label: Texto Sobre (parágrafo 1)
+        type: text
+      - name: aboutText2
+        label: Texto Sobre (parágrafo 2)
+        type: text
+      - name: aboutImage
+        label: Foto da seção Sobre
+        type: image
+        options:
+          path: media
+          extensions: [jpg, jpeg, png, webp, avif]
+      - name: profileImage
+        label: Foto do perfil
+        type: image
+        options:
+          path: media
+          extensions: [jpg, jpeg, png, webp, avif]
+      - name: servicesTitle
+        label: Título dos serviços
+        type: string
+      - name: contactTitle
+        label: Título da seção Contato
+        type: string
+      - name: contactText
+        label: Texto da seção Contato
+        type: text
