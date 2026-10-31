@@ -113,6 +113,9 @@
 .sidebar-glow:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,9,.5),rgba(9,9,9,.72))}
 @media(prefers-reduced-motion:reduce){.sidebar-glow span{transition:none}}
 
+/* GIF covers render pixel for pixel: no hover zoom resampling the animation. */
+.project-image img[src$=".gif" i],.project:hover .project-image img[src$=".gif" i]{transform:none}
+
 .about-reference-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 0;color:#d2d1ce}
 .about-reference-card{background:#151515;border-radius:9px;padding:30px 32px;min-width:0}
 .about-overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
@@ -199,7 +202,10 @@ function closeProject(){overlay.classList.remove('open');overlay.setAttribute('a
 // Sidebar glow: follow the feed image closest to the middle of the screen.
 const glowLayers=document.querySelectorAll('.sidebar-glow span');let glowSrc='',glowIndex=0,glowFrame;
 function glowCandidates(){return overlay.classList.contains('open')?detail.querySelectorAll('img'):document.querySelectorAll('.section.active img')}
-function updateGlow(){glowFrame=null;const mid=window.innerHeight/2;let best=null,bestDistance=Infinity;glowCandidates().forEach(img=>{const src=img.currentSrc||img.src;if(!src||img.hidden)return;const r=img.getBoundingClientRect();if(r.bottom<0||r.top>window.innerHeight||r.width<40)return;const distance=Math.abs((r.top+r.bottom)/2-mid);if(distance<bestDistance){bestDistance=distance;best=src}});if(!best||best===glowSrc)return;glowSrc=best;glowIndex=1-glowIndex;glowLayers[glowIndex].style.backgroundImage=`url("${best.replace(/"/g,'%22')}")`;glowLayers[glowIndex].classList.add('on');glowLayers[1-glowIndex].classList.remove('on')}
+// A tiny still snapshot keeps the blur cheap and stops animated GIFs from re-blurring every frame.
+const glowCache=new Map();
+function glowThumb(img,src){if(glowCache.has(src))return glowCache.get(src);let url=src.replace(/"/g,'%22');try{const c=document.createElement('canvas');c.width=64;c.height=Math.max(1,Math.round(64*img.naturalHeight/img.naturalWidth));c.getContext('2d').drawImage(img,0,0,c.width,c.height);url=c.toDataURL('image/png')}catch(e){}glowCache.set(src,url);return url}
+function updateGlow(){glowFrame=null;const mid=window.innerHeight/2;let best=null,bestImg=null,bestDistance=Infinity;glowCandidates().forEach(img=>{const src=img.currentSrc||img.src;if(!src||img.hidden||!img.complete||!img.naturalWidth)return;const r=img.getBoundingClientRect();if(r.bottom<0||r.top>window.innerHeight||r.width<40)return;const distance=Math.abs((r.top+r.bottom)/2-mid);if(distance<bestDistance){bestDistance=distance;best=src;bestImg=img}});if(!best||best===glowSrc)return;glowSrc=best;glowIndex=1-glowIndex;glowLayers[glowIndex].style.backgroundImage=`url("${glowThumb(bestImg,best)}")`;glowLayers[glowIndex].classList.add('on');glowLayers[1-glowIndex].classList.remove('on')}
 function queueGlow(){if(!glowFrame)glowFrame=setTimeout(updateGlow,120)}
 window.addEventListener('scroll',queueGlow,{passive:true});overlay.addEventListener('scroll',queueGlow,{passive:true});window.addEventListener('resize',queueGlow);document.addEventListener('load',queueGlow,true);document.addEventListener('click',()=>setTimeout(queueGlow,450));new MutationObserver(()=>setTimeout(queueGlow,450)).observe(overlay,{attributes:true,attributeFilter:['class']});
 </script></body></html>
