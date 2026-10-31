@@ -145,6 +145,22 @@
 @media(max-width:700px){.contact{padding:40px 16px 60px}.contact-info{grid-template-columns:1fr;gap:34px;margin-top:44px}.contact-page .contact-form{margin-top:56px}}
 /* GIF top covers show the whole animation in its own proportions instead of being cropped and stretched to fill the screen. */
 .detail-hero:has(>img[src$=".gif" i]){height:auto;min-height:0;display:block}
+/* Thin grey scrollbar on a black track, for the page and the project overlay. */
+html{background:#000}
+::-webkit-scrollbar{width:6px;height:6px;background:#000}
+::-webkit-scrollbar-track{background:#000}
+::-webkit-scrollbar-thumb{background:#7a7a7a;border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:#a3a3a3}
+::-webkit-scrollbar-corner{background:#000}
+@supports not selector(::-webkit-scrollbar){html,#overlay{scrollbar-width:thin;scrollbar-color:#7a7a7a #000}}
+
+/* Every page uses the home feed's side margin on both sides. */
+@media(min-width:701px){.work,#detail,.about,.contact{padding-left:9px;padding-right:9px}.about-layout,.services,.testimonials{max-width:none;margin-left:0;margin-right:0}.contact-page{max-width:none}}
+@media(max-width:700px){.work,#detail,.about,.contact{padding-left:12px;padding-right:12px}}
+
+/* Every image on the site shares the project covers' 9px corner radius. */
+.detail-hero,.gallery img,.about-image,.project-image,.project-image img,.profile-photo{border-radius:9px}
+
 /* Side-by-side gallery images always share the row height, even when their proportions differ slightly. */
 .gallery img:nth-child(3n+2),.gallery img:nth-child(3n){align-self:stretch;height:100%;object-fit:cover}
 .detail-hero>img[src$=".gif" i]{display:block;position:relative;inset:auto;width:100%;height:auto;max-height:calc(100vh - 70px);object-fit:contain;margin:auto}
