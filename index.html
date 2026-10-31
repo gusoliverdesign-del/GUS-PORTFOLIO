@@ -145,6 +145,8 @@
 @media(max-width:700px){.contact{padding:40px 16px 60px}.contact-info{grid-template-columns:1fr;gap:34px;margin-top:44px}.contact-page .contact-form{margin-top:56px}}
 /* GIF top covers show the whole animation in its own proportions instead of being cropped and stretched to fill the screen. */
 .detail-hero:has(>img[src$=".gif" i]){height:auto;min-height:0;display:block}
+/* Side-by-side gallery images always share the row height, even when their proportions differ slightly. */
+.gallery img:nth-child(3n+2),.gallery img:nth-child(3n){align-self:stretch;height:100%;object-fit:cover}
 .detail-hero>img[src$=".gif" i]{display:block;position:relative;inset:auto;width:100%;height:auto;max-height:calc(100vh - 70px);object-fit:contain;margin:auto}
 
 .about-reference-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 0;color:#d2d1ce}
