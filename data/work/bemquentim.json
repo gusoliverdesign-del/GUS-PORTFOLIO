@@ -1,0 +1,43 @@
+{
+  "title": "BEM QUENTIM",
+  "status": "Live",
+  "year": "2024",
+  "cover": "/media/1102-4.png",
+  "description": "A Bem Quentim é uma cafeteria nordestina em Eusébio, no Ceará, que aquece o corpo com café fresquinho e a alma com afeto, cultura e memória.",
+  "categories": [
+    "data/categories/identidade-visual.json",
+    "data/categories/naming.json"
+  ],
+  "info": "A Bem Quentim traduz em nome e em experiência o aconchego, a tradição e o café passado na hora, servido com carinho e sotaque. Sua identidade é vibrante e cheia de personalidade, com o verde da vegetação, o amarelo do sol e o vermelho das panelas de barro, unidos em grafismos que remetem às festas populares e à culinária regional. A tipografia mistura a espontaneidade da fala popular com o cuidado artesanal do design. Sob o slogan “Meu povo, o café tá pronto!”, cada xícara homenageia a cultura nordestina e o calor humano da região.",
+  "client": "Gabriel Freitas",
+  "credits": "Luiz Gustavo",
+  "slug": "bemquentim",
+  "gallery": [
+    "/media/01-capa-3.png",
+    "/media/0101-2.png",
+    "/media/0102-2.png",
+    "/media/02-3.png",
+    "/media/0301-2.png",
+    "/media/0302-2.png",
+    "/media/04-3.png",
+    "/media/0501-3.png",
+    "/media/0502-3.png",
+    "/media/06-3.png",
+    "/media/0702-4.png",
+    "/media/08-2.png",
+    "/media/0901-4.png",
+    "/media/0902-3.png",
+    "/media/10-3.png",
+    "/media/1101-4.png",
+    "/media/1102-5.png",
+    "/media/12-3.png",
+    "/media/1301-2.png",
+    "/media/1302-2.png",
+    "/media/14-3.png",
+    "/media/1501-4.png",
+    "/media/1502-4.png",
+    "/media/18-2.png",
+    "/media/1701-4.png",
+    "/media/1702-4.png"
+  ]
+}
