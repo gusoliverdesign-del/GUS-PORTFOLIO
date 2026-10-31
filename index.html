@@ -115,6 +115,9 @@
 
 /* GIF covers render pixel for pixel: no hover zoom resampling the animation. */
 .project-image img[src$=".gif" i],.project:hover .project-image img[src$=".gif" i]{transform:none}
+/* GIF top covers show the whole animation in its own proportions instead of being cropped and stretched to fill the screen. */
+.detail-hero:has(>img[src$=".gif" i]){height:auto;min-height:0;display:block}
+.detail-hero>img[src$=".gif" i]{display:block;position:relative;inset:auto;width:100%;height:auto;max-height:calc(100vh - 70px);object-fit:contain;margin:auto}
 
 .about-reference-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 0;color:#d2d1ce}
 .about-reference-card{background:#151515;border-radius:9px;padding:30px 32px;min-width:0}
@@ -172,7 +175,7 @@ function render(){filters.innerHTML='';categories.forEach(cat=>{const b=document
 function openProject(p){
   const infoText=p.info||p.desc||'';
   const meta=[['CLIENTE',p.client],['CATEGORIAS',(p.cats||[]).join(' · ')],['ANO',p.year]].filter(item=>item[1]);
-  const hero=p.heroImage||p.image;detail.innerHTML=`<div class="detail"><div class="detail-hero">${hero?`<img src="${safe(hero)}" alt="Capa de ${safe(p.title)}">`:''}</div><section class="detail-summary-card"><span class="detail-kicker">${safe((p.cats||[]).join(' · '))}${p.year?' · '+safe(p.year):''}</span><h1>${safe(p.title)}</h1><p>${safe(p.desc)}</p></section><div class="detail-cards"><section class="detail-about"><h2>Sobre</h2><p>${safe(infoText)}</p></section><section class="detail-meta">${meta.map(([label,value])=>`<div><span>${safe(label)}</span><b>${safe(value)}</b></div>`).join('')}</section></div>${p.credits?`<section class="detail-credits"><h2>Créditos</h2><p>${safe(p.credits)}</p></section>`:''}<div class="gallery">${(p.gallery||[]).map((src,i)=>src?`<img src="${safe(src)}" alt="${safe(p.title)} — imagem ${i+1}" loading="lazy">`: '').join('')}</div></div>`;
+  const hero=p.heroImage||p.image;detail.innerHTML=`<div class="detail"><div class="detail-hero">${hero?`<img src="${safe(hero)}" alt="Capa de ${safe(p.title)}" fetchpriority="high">`:''}</div><section class="detail-summary-card"><span class="detail-kicker">${safe((p.cats||[]).join(' · '))}${p.year?' · '+safe(p.year):''}</span><h1>${safe(p.title)}</h1><p>${safe(p.desc)}</p></section><div class="detail-cards"><section class="detail-about"><h2>Sobre</h2><p>${safe(infoText)}</p></section><section class="detail-meta">${meta.map(([label,value])=>`<div><span>${safe(label)}</span><b>${safe(value)}</b></div>`).join('')}</section></div>${p.credits?`<section class="detail-credits"><h2>Créditos</h2><p>${safe(p.credits)}</p></section>`:''}<div class="gallery">${(p.gallery||[]).map((src,i)=>src?`<img src="${safe(src)}" alt="${safe(p.title)} — imagem ${i+1}" loading="lazy">`: '').join('')}</div></div>`;
   overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
   categoryBar.classList.remove('is-hidden');detail.querySelector('.detail').style.paddingTop=categoryBar.offsetHeight+'px';
   overlay.scrollTop=0;
