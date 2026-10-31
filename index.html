@@ -185,9 +185,12 @@ body.project-open .main{display:none}
 /* Every page uses the home feed's side margin on both sides. */
 @media(min-width:701px){.work,#detail,.about,.contact{padding-left:9px;padding-right:9px}.about-layout,.services,.testimonials{max-width:none;margin-left:0;margin-right:0}.contact-page{max-width:none}}
 @media(max-width:700px){.work,#detail,.about,.contact{padding-left:12px;padding-right:12px}}
+/* Transitions only fade: content never slides, so the top margin stays identical while pages and projects change. */
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes cardin{from{opacity:0}to{opacity:1}}
+.overlay,.overlay.open{transform:none;transition:opacity .3s,visibility .3s}
 /* Every page starts at the same distance below the category bar as the home covers. */
-@media(min-width:701px){.about,.contact{padding-top:58px}#detail>.detail{padding-top:55px!important}}
-@media(max-width:700px){.work,.about,.contact{padding-top:calc(var(--bar-h,87px) + 4px)}#detail>.detail{padding-top:calc(var(--bar-h,87px) + 1px)!important}}
+.work,.about,.contact{padding-top:calc(var(--bar-h,54px) + 1px)}#detail>.detail{padding-top:calc(var(--bar-h,54px) + 1px)!important}
 
 /* Every image on the site shares the project covers' 9px corner radius. */
 .detail-hero,.gallery img,.about-image,.project-image,.project-image img,.profile-photo{border-radius:9px}
