@@ -56,6 +56,13 @@ content:
         options:
           path: media
           extensions: [jpg, jpeg, png, webp, gif, avif]
+      - name: logo
+        label: Logo do trabalho (ícone do painel lateral)
+        description: Imagem quadrada pequena que aparece ao lado do nome na lista de trabalhos do painel. Se ficar vazio, usa a capa da home.
+        type: image
+        options:
+          path: media
+          extensions: [jpg, jpeg, png, webp, gif, avif]
       - name: hero
         label: Imagem de capa do topo do trabalho
         description: Capa grande exibida ao abrir a página do trabalho.

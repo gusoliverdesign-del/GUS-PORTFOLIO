@@ -74,6 +74,7 @@ def main() -> None:
             "year": work.get("year", ""),
             "cats": category_names,
             "image": asset_path(work.get("cover")),
+            "logo": asset_path(work.get("logo")),
             "heroImage": asset_path(work.get("hero")) or asset_path(work.get("cover")),
             "desc": work.get("description", ""),
             "info": work.get("info", ""),
