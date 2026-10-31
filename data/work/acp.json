@@ -1,0 +1,43 @@
+{
+  "title": "ACP",
+  "status": "Live",
+  "year": "2025",
+  "cover": "/media/01-capa-feed.png",
+  "hero": "/media/01-capa1.png",
+  "description": "A ACP, Ailton Construções e Pavimentações, é uma empresa de engenharia especializada em obras de construção e pavimentação, que entrega projetos sólidos, no prazo e com acabamento de qualidade.",
+  "categories": [
+    "data/categories/identidade-visual.json"
+  ],
+  "info": "A ACP nasceu da experiência de campo e do compromisso com obras bem executadas. Atua em construções e pavimentações urbanas, viárias e industriais, do planejamento à entrega final, com equipe própria, maquinário moderno e controle rigoroso de qualidade. Sua identidade visual reflete esse DNA: o laranja, cor de sinalização e de obra em andamento, une-se ao cinza do asfalto e a um símbolo geométrico em forma de cubo, que remete à estrutura, à precisão e à solidez. A tipografia, firme e direta, reforça a comunicação clara de quem prefere mostrar resultado a prometer. Sob a ideia de ser especialista em construções e pavimentações, a ACP constrói caminhos duradouros, com responsabilidade técnica e respeito ao cliente.",
+  "client": "Ailton Costa",
+  "credits": "Luiz Gustavo",
+  "slug": "acp",
+  "gallery": [
+    "/media/01-capa-7.png",
+    "/media/0101-5.png",
+    "/media/0102-5.png",
+    "/media/02-6.png",
+    "/media/0301-5.png",
+    "/media/0302-5.png",
+    "/media/04-7.png",
+    "/media/0501-6.png",
+    "/media/0502-5.png",
+    "/media/06-5.png",
+    "/media/0701-8.png",
+    "/media/0702-6.png",
+    "/media/08-7.png",
+    "/media/0901-8.png",
+    "/media/0902-8.png",
+    "/media/10-7.png",
+    "/media/1101-8.png",
+    "/media/1102-9.png",
+    "/media/1301-6.png",
+    "/media/1302-6.png",
+    "/media/1501-7.png",
+    "/media/1502-7.png",
+    "/media/16-3.png",
+    "/media/1701-7.png",
+    "/media/1702-7.png",
+    "/media/18-5.png"
+  ]
+}
