@@ -267,7 +267,12 @@ img{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none;-webkit-use
 @media(min-width:701px){.about .ab{max-width:none}.ab-tools{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
 @media(max-width:700px){.ab-tools{grid-template-columns:1fr 1fr}}
 /* Only the Sobre eu page gets 50px side margins. */
-@media(min-width:701px){.about{padding-left:50px!important;padding-right:50px!important}}
+@media(min-width:701px){.about,.contact{padding-left:50px!important;padding-right:50px!important}}
+/* Contact fields match the other boxes: no outline, #111 fill, 9px corners. */
+.contact-page .contact-form input,.contact-page .contact-form select,.contact-page .contact-form textarea{border:0;border-radius:9px;background-color:#111;padding:14px 16px}
+.contact-page .contact-form select{padding-right:40px;background-position:right 16px center}
+.contact-page .contact-form input:focus,.contact-page .contact-form select:focus,.contact-page .contact-form textarea:focus{background-color:#1a1a1a}
+.contact-page .contact-form select option{background:#111}
 /* Company logos in the timeline, shown in white so they read on the dark page. */
 .ab-side{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
 .ab-logo{display:block;width:auto;height:30px;max-width:130px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85}
