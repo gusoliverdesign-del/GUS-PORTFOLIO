@@ -325,6 +325,15 @@ body.menu-open .side-nav,body.menu-open .sidebar .sidebar-bottom{opacity:1;trans
 @media(max-width:700px) and (prefers-reduced-motion:reduce){body.m-cats-hidden .global-filters{transform:none}.global-filters{transition:opacity .2s!important}}
 /* Mobile: project cover shows the whole image at its own proportions, and paired gallery images stack one below the other. */
 @media(max-width:700px){.detail-hero,.detail-hero:has(>img[src$=".gif" i]){display:block;height:auto;min-height:0;max-height:none}.detail-hero>img,.detail-hero>img[src$=".gif" i]{position:relative;inset:auto;display:block;width:100%;height:auto;max-height:none;object-fit:contain}.gallery{grid-template-columns:1fr}.gallery img,.gallery img:nth-child(3n+1),.gallery img:nth-child(3n+2),.gallery img:nth-child(3n){grid-column:1/-1;height:auto;max-height:none;object-fit:contain;align-self:start}}
+/* Mobile type scale: page titles Manrope 40/500, subtitles Manrope 20/600, labels JetBrains Mono 11 caps, body DM Sans 16, secondary DM Sans 13. */
+@media(max-width:700px){
+.detail-summary-card h1{font:500 40px/1.05 Manrope,sans-serif;letter-spacing:-.045em}
+.detail-about h2,.detail-credits h2{font:600 20px/1.25 Manrope,sans-serif;letter-spacing:-.02em}
+.detail-kicker,.detail-meta span,.ab-when,.ab-stats span{font:400 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
+.detail-kicker,.detail-meta span{color:#8a8a86}
+.detail-summary-card p,.detail-about p,.detail-credits p,.detail-meta b,.ab-what p:not(.ab-role){font-size:16px;line-height:1.6}
+.ab-role{font-size:13px}
+}
 </style></head>
 <body>
 <div class="loader" id="loader" aria-hidden="true"><div class="loader-track"><div class="loader-bar"></div></div></div>
