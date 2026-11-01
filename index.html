@@ -347,6 +347,9 @@ body.menu-open .side-nav,body.menu-open .sidebar .sidebar-bottom{opacity:1;trans
 .lang-option[aria-checked="true"]:after{content:"";width:6px;height:6px;border-radius:50%;background:#f1f0ed}
 @media(max-width:700px){.global-filters .lang-btn{width:40px;height:40px;border:1px solid rgba(255,255,255,.12);background:rgba(58,58,58,.6);color:#e4e3df;font-size:12px;-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);box-shadow:0 6px 18px rgba(0,0,0,.25)}.lang-option{font-size:15px;padding:12px 14px}}
 @media(prefers-reduced-motion:reduce){.lang-menu{transition:opacity .01ms}}
+/* While a category is selected in the bar, the panel's "Trabalhos" item is not highlighted: one selection at a time. */
+body.cat-filtered .side-nav a.active[data-page="trabalhos"]{background:none;border-color:transparent;color:#9d9c98}
+@media(max-width:700px){body.cat-filtered .side-nav a.active[data-page="trabalhos"]{color:#d8d7d3}}
 </style></head>
 <body>
 <div class="loader" id="loader" aria-hidden="true"><div class="loader-track"><div class="loader-bar"></div></div></div>
@@ -379,7 +382,7 @@ function layoutGrid(){const gy=parseFloat(getComputedStyle(grid).getPropertyValu
 document.addEventListener("contextmenu",e=>{if(e.target.closest("img"))e.preventDefault()});document.addEventListener("dragstart",e=>{if(e.target.closest("img"))e.preventDefault()});
 document.querySelector('#abCta')?.addEventListener('click',e=>{e.preventDefault();document.querySelector('[data-page="contato"]').click()});
 let gridTimer;const queueGrid=()=>{clearTimeout(gridTimer);gridTimer=setTimeout(layoutGrid,60)};grid.addEventListener("load",queueGrid,true);window.addEventListener("resize",queueGrid);document.addEventListener("click",queueGrid);if(window.ResizeObserver)new ResizeObserver(queueGrid).observe(grid);
-function render(){filters.innerHTML='';categories.forEach(cat=>{const b=document.createElement('button');b.className='filter'+(cat===active?' active':'');b.textContent=cat;b.onclick=()=>{active=cat;render();if(overlay.classList.contains('open'))closeProject();document.querySelector('[data-page="trabalhos"]').click();};filters.append(b);});const search=document.createElement('input');search.className='filter-search';search.type='search';search.placeholder='Buscar trabalho';search.setAttribute('aria-label','Buscar trabalhos pelo nome');search.value=searchTerm;search.addEventListener('input',()=>{searchTerm=search.value;if(overlay.classList.contains('open'))closeProject();const workSection=document.querySelector('#trabalhos');if(!workSection.classList.contains('active'))document.querySelector('[data-page="trabalhos"]').click();renderProjects();});filters.append(search);if(window.langSwitch)filters.append(window.langSwitch);renderProjects();}
+function render(){document.body.classList.toggle('cat-filtered',active!=='All');filters.innerHTML='';categories.forEach(cat=>{const b=document.createElement('button');b.className='filter'+(cat===active?' active':'');b.textContent=cat;b.onclick=()=>{active=cat;render();if(overlay.classList.contains('open'))closeProject();document.querySelector('[data-page="trabalhos"]').click();};filters.append(b);});const search=document.createElement('input');search.className='filter-search';search.type='search';search.placeholder='Buscar trabalho';search.setAttribute('aria-label','Buscar trabalhos pelo nome');search.value=searchTerm;search.addEventListener('input',()=>{searchTerm=search.value;if(overlay.classList.contains('open'))closeProject();const workSection=document.querySelector('#trabalhos');if(!workSection.classList.contains('active'))document.querySelector('[data-page="trabalhos"]').click();renderProjects();});filters.append(search);if(window.langSwitch)filters.append(window.langSwitch);renderProjects();}
 // Sidebar list of every live project: hover slides the name to reveal its logo, the open project stays selected.
 function renderSideProjects(){const list=document.querySelector('#sideProjects');if(!list)return;list.innerHTML='';projects.forEach(p=>{const b=document.createElement('button');b.type='button';b.className='side-project';b.dataset.id=p.id;const icon=p.logo||p.image;b.innerHTML=`<span class="side-project-icon">${icon?`<img src="${safe(icon)}" alt="" loading="lazy">`:''}</span><span class="side-project-name">${safe(p.title)}</span>`;b.onclick=()=>openProject(p);list.append(b);});markSideProject(overlay.classList.contains('open')?currentSideProject:null)}
 let currentSideProject=null;
@@ -529,6 +532,10 @@ const setLang=v=>{lang=v==='en'?'en':'pt';save(lang);sync();apply(document.body)
 new MutationObserver(ms=>{if(lang==='pt')return;const d=dynamic();ms.forEach(m=>m.addedNodes.forEach(n=>{if(n.nodeType===3)doText(n,d);else if(n.nodeType===1)apply(n)}))}).observe(document.body,{childList:true,subtree:true});
 sync();if(lang==='en')apply(document.body);
 })();
+</script>
+<script>
+// Clicking "Trabalhos" in the panel clears the category filter, so only one item is selected at a time.
+document.querySelectorAll('.side-nav a[data-page="trabalhos"]').forEach(a=>a.addEventListener('click',e=>{if(e.isTrusted&&active!=='All'){active='All';render()}}));
 </script>
 </body></html>
 
