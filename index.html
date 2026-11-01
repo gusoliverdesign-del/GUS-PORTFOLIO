@@ -266,8 +266,10 @@ img{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none;-webkit-use
 @media(max-width:700px){.ab-intro,.ab-cols,.ab-edu{grid-template-columns:1fr}.ab-stats{grid-template-columns:1fr 1fr 1fr;margin-top:40px}.ab-stats div{padding:16px 14px}.ab-stats span{font-size:9px}.ab-block{margin-top:52px}.ab-timeline li{grid-template-columns:1fr;gap:8px}.ab-cta{margin-top:52px}}
 @media(min-width:701px){.about .ab{max-width:none}.ab-tools{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}
 @media(max-width:700px){.ab-tools{grid-template-columns:1fr 1fr}}
-/* Only the Sobre eu page gets 50px side margins. */
-@media(min-width:701px){.about,.contact{padding-left:50px!important;padding-right:50px!important}}
+/* Sidebar: page links get the same selected box as the project list, with a divider between them. */
+@media(min-width:701px){.side-nav{align-items:stretch;gap:1px;margin-left:-9px;margin-right:-9px}.side-nav a{display:block;padding:6px 9px;border:1px solid transparent;border-radius:8px;transition:color .3s,background-color .3s,border-color .3s}.side-nav a:hover,.side-nav a.active{transform:none}.side-nav a.active{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}.side-projects{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)}}
+/* Sobre eu and Contato get 40px side margins. */
+@media(min-width:701px){.about,.contact{padding-left:40px!important;padding-right:40px!important}}
 /* Contact fields match the other boxes: no outline, #111 fill, 9px corners. */
 .contact-page .contact-form input,.contact-page .contact-form select,.contact-page .contact-form textarea{border:0;border-radius:9px;background-color:#111;padding:14px 16px}
 .contact-page .contact-form select{padding-right:40px;background-position:right 16px center}
