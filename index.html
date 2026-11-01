@@ -290,7 +290,7 @@ img{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none;-webkit-use
 .sidebar-glow,.profile-photo,.profile-role,.side-projects{display:none!important}
 .sidebar-top{display:block}
 .profile-name{display:block;height:var(--m-bar);line-height:var(--m-bar);padding:0 120px 0 22px;margin:0;font:600 20px/var(--m-bar) 'DM Sans',sans-serif;letter-spacing:-.02em;color:#f1f0ed;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sidebar>.m-menu-btn{display:block;position:absolute;top:7px;right:7px;z-index:2;height:42px;padding:0 20px;border:0;border-radius:99px;background:rgba(255,255,255,.14);color:#f1f0ed;font:500 15px/42px 'DM Sans',sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background-color .25s}
+.sidebar>.m-menu-btn{display:block;position:absolute;top:6px;right:6px;z-index:2;height:42px;padding:0 20px;border:0;border-radius:99px;background:rgba(255,255,255,.14);color:#f1f0ed;font:500 15px/42px 'DM Sans',sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background-color .25s}
 .m-menu-btn:active{background:rgba(255,255,255,.22)}
 .side-nav{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin:6px 0 0;padding:0 22px}
 .side-nav a,.side-nav a:hover,.side-nav a.active{font:500 28px/1.25 'DM Sans',sans-serif;letter-spacing:-.025em;color:#d8d7d3;transform:none}
@@ -320,6 +320,9 @@ body.menu-open .side-nav,body.menu-open .sidebar .sidebar-bottom{opacity:1;trans
 #detail>.detail{padding-top:calc(var(--m-top) + var(--m-bar) + 8px + var(--bar-h,50px) + 6px)!important}
 }
 @media(max-width:700px) and (prefers-reduced-motion:reduce){.sidebar,.side-nav,.sidebar .sidebar-bottom{transition:none}}
+/* Mobile: categories slide up behind the glass bar while scrolling down and come back when scrolling up. */
+@media(max-width:700px){.global-filters,.global-filters.is-scrolled,.global-filters.is-hidden{transition:transform .42s cubic-bezier(.22,.8,.24,1),opacity .3s ease}body.m-cats-hidden .global-filters{transform:translateY(calc(-100% - 14px));opacity:0;pointer-events:none;transition:transform .36s cubic-bezier(.5,0,.75,0),opacity .22s ease .06s}}
+@media(max-width:700px) and (prefers-reduced-motion:reduce){body.m-cats-hidden .global-filters{transform:none}.global-filters{transition:opacity .2s!important}}
 </style></head>
 <body>
 <div class="loader" id="loader" aria-hidden="true"><div class="loader-track"><div class="loader-bar"></div></div></div>
@@ -418,6 +421,12 @@ bar.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>s
 document.addEventListener('click',e=>{if(document.body.classList.contains('menu-open')&&!bar.contains(e.target))setOpen(false)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
 window.matchMedia('(max-width:700px)').addEventListener('change',e=>{if(!e.matches)setOpen(false)});
+// Categories hide while scrolling down and return when scrolling up (mobile only).
+const mq=window.matchMedia('(max-width:700px)'),ov=document.querySelector('#overlay');let lastY=0,ticking=false;
+const curY=()=>Math.max(window.scrollY||0,ov&&!ov.classList.contains('in-flow')&&ov.classList.contains('open')?ov.scrollTop:0);
+const onScroll=()=>{if(ticking)return;ticking=true;requestAnimationFrame(()=>{ticking=false;const y=curY(),dy=y-lastY;if(!mq.matches||y<40||document.body.classList.contains('menu-open')){document.body.classList.remove('m-cats-hidden');lastY=y;return}if(Math.abs(dy)<6)return;document.body.classList.toggle('m-cats-hidden',dy>0);lastY=y})};
+window.addEventListener('scroll',onScroll,{passive:true});if(ov)ov.addEventListener('scroll',onScroll,{passive:true});
+document.addEventListener('click',()=>setTimeout(()=>{lastY=curY();if(lastY<40)document.body.classList.remove('m-cats-hidden')},500));
 // Mirror the contact e-mail (filled from the CMS) into the mobile menu.
 const src=document.querySelector('.contact-email'),dst=document.querySelector('.m-email');const sync=()=>{if(src&&dst){dst.textContent=src.textContent;dst.href=src.href}};sync();if(src)new MutationObserver(sync).observe(src,{childList:true,characterData:true,subtree:true,attributes:true});
 })();
