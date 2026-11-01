@@ -281,10 +281,49 @@ img{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none;-webkit-use
 .ab-logo-tall{height:46px}
 .ab-tools b{background:none;width:36px;height:36px}.ab-tools b img{width:36px;height:36px;display:block}
 @media(max-width:700px){.ab-side{flex-direction:row-reverse;justify-content:space-between;align-items:center;width:100%}.ab-logo{height:24px}.ab-logo-tall{height:36px}}
+
+/* Mobile: floating dark-glass bar (name + Menu) that expands into the menu, with glass category pills right below. */
+.m-menu-btn,.m-avail,.m-divider,.m-email{display:none}
+@media(max-width:700px){
+:root{--m-top:12px;--m-bar:56px}
+.sidebar{position:fixed;top:var(--m-top);left:12px;right:12px;bottom:auto;width:auto;height:auto;max-height:var(--m-bar);min-height:0;padding:0;display:block;overflow:hidden;z-index:60;border:1px solid rgba(255,255,255,.1);border-radius:28px;background:rgba(58,58,58,.6);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);box-shadow:0 14px 38px rgba(0,0,0,.35);transition:max-height .45s cubic-bezier(.2,.7,.2,1),border-radius .45s cubic-bezier(.2,.7,.2,1),background-color .3s}
+.sidebar-glow,.profile-photo,.profile-role,.side-projects{display:none!important}
+.sidebar-top{display:block}
+.profile-name{display:block;height:var(--m-bar);line-height:var(--m-bar);padding:0 120px 0 22px;margin:0;font:600 20px/var(--m-bar) 'DM Sans',sans-serif;letter-spacing:-.02em;color:#f1f0ed;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sidebar>.m-menu-btn{display:block;position:absolute;top:7px;right:7px;z-index:2;height:42px;padding:0 20px;border:0;border-radius:99px;background:rgba(255,255,255,.14);color:#f1f0ed;font:500 15px/42px 'DM Sans',sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background-color .25s}
+.m-menu-btn:active{background:rgba(255,255,255,.22)}
+.side-nav{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin:6px 0 0;padding:0 22px}
+.side-nav a,.side-nav a:hover,.side-nav a.active{font:500 28px/1.25 'DM Sans',sans-serif;letter-spacing:-.025em;color:#d8d7d3;transform:none}
+.side-nav a.active{color:#fff}
+.sidebar .sidebar-bottom{display:block;padding:20px 22px 22px;color:#bdbcb8;font-size:15px}
+.m-avail{display:flex;align-items:center;gap:10px;margin:0 0 20px;color:#d8d7d3;font-size:15px}
+.m-avail .status-dot{background:#3fbf5a;box-shadow:0 0 10px rgba(63,191,90,.45)}
+.m-divider{display:block;height:1px;background:rgba(255,255,255,.14);margin:0 0 20px}
+.m-email{display:block;margin:0 0 14px;color:#f1f0ed;font-size:18px;font-weight:500}
+.sidebar .social-link{display:block;margin:0 0 10px;color:#d8d7d3;font-size:15px}
+.sidebar .copyright{margin:20px 0 0;font:400 11px/1.4 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#a3a29e}
+.side-nav,.sidebar .sidebar-bottom{opacity:0;transition:opacity .2s ease}
+body.menu-open .sidebar{max-height:calc(100svh - 24px);overflow-y:auto;border-radius:30px;background:rgba(52,52,52,.72)}
+body.menu-open .side-nav,body.menu-open .sidebar .sidebar-bottom{opacity:1;transition:opacity .35s ease .12s}
+.global-filters,.global-filters.is-scrolled,.global-filters.is-hidden{top:calc(var(--m-top) + var(--m-bar) + 8px);left:0;right:0;padding:0;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;transform:none;opacity:1;pointer-events:auto;z-index:45}
+.global-filters .filters{flex-wrap:nowrap;overflow-x:auto;overflow-y:visible;white-space:nowrap;padding:2px 12px 8px;gap:7px;scrollbar-width:none}
+.global-filters .filters::-webkit-scrollbar{display:none}
+.global-filters .filter,.global-filters .filter-search{flex:0 0 auto;height:40px;padding:0 18px;border:1px solid rgba(255,255,255,.12);border-radius:99px;background-color:rgba(58,58,58,.6);color:#e4e3df;font:500 15px/38px 'DM Sans',sans-serif;-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.global-filters .filter.active{background:#f1f0ed;border-color:#f1f0ed;color:#111}
+.global-filters .filter-search{width:180px;min-width:0;max-width:none;margin-left:0;padding-left:38px;background-position:14px center;font-size:15px}
+.global-filters .filter-search:focus{background-color:rgba(58,58,58,.8);border-color:rgba(255,255,255,.3)}
+.main{margin-top:0}
+.overlay,.overlay.in-flow{margin-top:0}
+.overlay:not(.in-flow){inset:0}
+.close{top:auto;bottom:16px}
+.work,.about,.contact{padding-top:calc(var(--m-top) + var(--m-bar) + 8px + var(--bar-h,50px) + 6px)}
+#detail>.detail{padding-top:calc(var(--m-top) + var(--m-bar) + 8px + var(--bar-h,50px) + 6px)!important}
+}
+@media(max-width:700px) and (prefers-reduced-motion:reduce){.sidebar,.side-nav,.sidebar .sidebar-bottom{transition:none}}
 </style></head>
 <body>
 <div class="loader" id="loader" aria-hidden="true"><div class="loader-track"><div class="loader-bar"></div></div></div>
-<aside class="sidebar"><div class="sidebar-glow" aria-hidden="true"><span></span><span></span></div><div class="sidebar-top"><a class="profile-photo" href="#trabalhos" aria-label="Ir para trabalhos"><img alt="Retrato do designer" hidden></a><a class="profile-name" href="#trabalhos">Gustavo Oliveira</a><p class="profile-role">Designer Gráfico</p><nav class="side-nav"><a class="active" href="#trabalhos" data-page="trabalhos">Trabalhos</a><a href="#sobre" data-page="sobre">Sobre eu</a><a href="#contato" data-page="contato">Contato</a></nav><nav class="side-projects" id="sideProjects" aria-label="Lista de trabalhos"></nav></div><div class="sidebar-bottom"><a class="social-link" href="#" target="_blank">Instagram ↗</a><a class="social-link" href="#" target="_blank">Behance ↗</a><a class="social-link" href="#" target="_blank">LinkedIn ↗</a><p class="copyright">© 2026 Gustavo Oliveira</p></div></aside>
+<aside class="sidebar"><div class="sidebar-glow" aria-hidden="true"><span></span><span></span></div><button class="m-menu-btn" type="button" aria-expanded="false" aria-controls="mobileMenu">Menu</button><div class="sidebar-top"><a class="profile-photo" href="#trabalhos" aria-label="Ir para trabalhos"><img alt="Retrato do designer" hidden></a><a class="profile-name" href="#trabalhos">Gustavo Oliveira</a><p class="profile-role">Designer Gráfico</p><nav class="side-nav"><a class="active" href="#trabalhos" data-page="trabalhos">Trabalhos</a><a href="#sobre" data-page="sobre">Sobre eu</a><a href="#contato" data-page="contato">Contato</a></nav><nav class="side-projects" id="sideProjects" aria-label="Lista de trabalhos"></nav></div><div class="sidebar-bottom" id="mobileMenu"><p class="m-avail"><span class="status-dot"></span>Disponível para projetos selecionados.</p><span class="m-divider"></span><a class="m-email" href="mailto:seuemail@exemplo.com">seuemail@exemplo.com</a><a class="social-link" href="#" target="_blank">Instagram ↗</a><a class="social-link" href="#" target="_blank">Behance ↗</a><a class="social-link" href="#" target="_blank">LinkedIn ↗</a><p class="copyright">© 2026 Gustavo Oliveira</p></div></aside>
 <div class="global-filters"><div class="filters" id="filters"></div></div>
 <main class="main">
 <section class="section work active" id="trabalhos"><div class="grid" id="grid"></div></section>
@@ -370,7 +409,20 @@ function glowThumb(img,src){if(glowCache.has(src))return glowCache.get(src);let 
 function updateGlow(){glowFrame=null;const mid=window.innerHeight/2;let best=null,bestImg=null,bestDistance=Infinity;glowCandidates().forEach(img=>{const src=img.currentSrc||img.src;if(!src||img.hidden||!img.complete||!img.naturalWidth)return;const r=img.getBoundingClientRect();if(r.bottom<0||r.top>window.innerHeight||r.width<40)return;const distance=Math.abs((r.top+r.bottom)/2-mid);if(distance<bestDistance){bestDistance=distance;best=src;bestImg=img}});if(!best||best===glowSrc)return;glowSrc=best;glowIndex=1-glowIndex;glowLayers[glowIndex].style.backgroundImage=`url("${glowThumb(bestImg,best)}")`;glowLayers[glowIndex].classList.add('on');glowLayers[1-glowIndex].classList.remove('on')}
 function queueGlow(){if(!glowFrame)glowFrame=setTimeout(updateGlow,120)}
 window.addEventListener('scroll',queueGlow,{passive:true});overlay.addEventListener('scroll',queueGlow,{passive:true});window.addEventListener('resize',queueGlow);document.addEventListener('load',queueGlow,true);document.addEventListener('click',()=>setTimeout(queueGlow,450));new MutationObserver(()=>setTimeout(queueGlow,450)).observe(overlay,{attributes:true,attributeFilter:['class']});
-</script></body></html>
+</script><script>
+// Mobile menu: the floating bar expands into the menu and closes on navigation, outside tap or Escape.
+(()=>{const btn=document.querySelector('.m-menu-btn'),bar=document.querySelector('.sidebar');if(!btn)return;
+const setOpen=open=>{document.body.classList.toggle('menu-open',open);btn.textContent=open?'Fechar':'Menu';btn.setAttribute('aria-expanded',String(open));if(!open)bar.scrollTop=0};
+btn.addEventListener('click',e=>{e.stopPropagation();setOpen(!document.body.classList.contains('menu-open'))});
+bar.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>setOpen(false)));
+document.addEventListener('click',e=>{if(document.body.classList.contains('menu-open')&&!bar.contains(e.target))setOpen(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
+window.matchMedia('(max-width:700px)').addEventListener('change',e=>{if(!e.matches)setOpen(false)});
+// Mirror the contact e-mail (filled from the CMS) into the mobile menu.
+const src=document.querySelector('.contact-email'),dst=document.querySelector('.m-email');const sync=()=>{if(src&&dst){dst.textContent=src.textContent;dst.href=src.href}};sync();if(src)new MutationObserver(sync).observe(src,{childList:true,characterData:true,subtree:true,attributes:true});
+})();
+</script>
+</body></html>
 
 
 
