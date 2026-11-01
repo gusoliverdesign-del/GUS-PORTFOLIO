@@ -323,6 +323,8 @@ body.menu-open .side-nav,body.menu-open .sidebar .sidebar-bottom{opacity:1;trans
 /* Mobile: categories slide up behind the glass bar while scrolling down and come back when scrolling up. */
 @media(max-width:700px){.global-filters,.global-filters.is-scrolled,.global-filters.is-hidden{transition:transform .42s cubic-bezier(.22,.8,.24,1),opacity .3s ease}body.m-cats-hidden .global-filters{transform:translateY(calc(-100% - 14px));opacity:0;pointer-events:none;transition:transform .36s cubic-bezier(.5,0,.75,0),opacity .22s ease .06s}}
 @media(max-width:700px) and (prefers-reduced-motion:reduce){body.m-cats-hidden .global-filters{transform:none}.global-filters{transition:opacity .2s!important}}
+/* Mobile: project cover shows the whole image at its own proportions, and paired gallery images stack one below the other. */
+@media(max-width:700px){.detail-hero,.detail-hero:has(>img[src$=".gif" i]){display:block;height:auto;min-height:0;max-height:none}.detail-hero>img,.detail-hero>img[src$=".gif" i]{position:relative;inset:auto;display:block;width:100%;height:auto;max-height:none;object-fit:contain}.gallery{grid-template-columns:1fr}.gallery img,.gallery img:nth-child(3n+1),.gallery img:nth-child(3n+2),.gallery img:nth-child(3n){grid-column:1/-1;height:auto;max-height:none;object-fit:contain;align-self:start}}
 </style></head>
 <body>
 <div class="loader" id="loader" aria-hidden="true"><div class="loader-track"><div class="loader-bar"></div></div></div>
