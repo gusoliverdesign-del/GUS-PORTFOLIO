@@ -310,7 +310,7 @@ body.menu-open .side-nav,body.menu-open .sidebar .sidebar-bottom{opacity:1;trans
 .global-filters .filters::-webkit-scrollbar{display:none}
 .global-filters .filter,.global-filters .filter-search{flex:0 0 auto;height:40px;padding:0 18px;border:1px solid rgba(255,255,255,.12);border-radius:99px;background-color:rgba(58,58,58,.6);color:#e4e3df;font:500 15px/38px 'DM Sans',sans-serif;-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);box-shadow:0 6px 18px rgba(0,0,0,.25)}
 .global-filters .filter.active{background:#f1f0ed;border-color:#f1f0ed;color:#111}
-.global-filters .filter-search{width:180px;min-width:0;max-width:none;margin-left:0;padding-left:38px;background-position:14px center;font-size:15px}
+.global-filters .filter-search{width:200px;min-width:0;max-width:none;margin-left:0;padding-left:38px;background-position:14px center;font-size:15px}
 .global-filters .filter-search:focus{background-color:rgba(58,58,58,.8);border-color:rgba(255,255,255,.3)}
 .main{margin-top:0}
 .overlay,.overlay.in-flow{margin-top:0}
@@ -334,6 +334,19 @@ body.menu-open .side-nav,body.menu-open .sidebar .sidebar-bottom{opacity:1;trans
 .detail-summary-card p,.detail-about p,.detail-credits p,.detail-meta b,.ab-what p:not(.ab-role){font-size:16px;line-height:1.6}
 .ab-role{font-size:13px}
 }
+/* Language switch: a round button beside the search that opens PT-BR / English. */
+.lang-switch{flex:0 0 auto;display:flex}
+.lang-btn{width:38px;height:38px;padding:0;border:1px solid #888;border-radius:50%;background:transparent;color:#f1f0ed;font:600 11px/1 'DM Sans',sans-serif;letter-spacing:.04em;cursor:pointer;transition:border-color .25s,background-color .25s,box-shadow .25s}
+.lang-btn:hover,.lang-btn[aria-expanded="true"]{border-color:#c9c8c4;background:#111;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+.lang-btn:focus-visible{outline:none;box-shadow:0 0 0 2px rgba(255,255,255,.35)}
+.lang-menu{position:fixed;z-index:80;min-width:178px;padding:6px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(32,32,32,.86);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);box-shadow:0 16px 40px rgba(0,0,0,.4);opacity:0;visibility:hidden;transform:translateY(-6px) scale(.98);transform-origin:top right;transition:opacity .2s ease,transform .25s cubic-bezier(.2,.7,.2,1),visibility .2s}
+.lang-menu.open{opacity:1;visibility:visible;transform:none}
+.lang-option{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;padding:10px 12px;border:0;border-radius:9px;background:none;color:#cfcecb;font:400 14px/1.2 'DM Sans',sans-serif;text-align:left;cursor:pointer;transition:background-color .2s,color .2s}
+.lang-option:hover,.lang-option:focus-visible{background:rgba(255,255,255,.08);color:#fff;outline:none}
+.lang-option[aria-checked="true"]{color:#fff}
+.lang-option[aria-checked="true"]:after{content:"";width:6px;height:6px;border-radius:50%;background:#f1f0ed}
+@media(max-width:700px){.global-filters .lang-btn{width:40px;height:40px;border:1px solid rgba(255,255,255,.12);background:rgba(58,58,58,.6);color:#e4e3df;font-size:12px;-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);box-shadow:0 6px 18px rgba(0,0,0,.25)}.lang-option{font-size:15px;padding:12px 14px}}
+@media(prefers-reduced-motion:reduce){.lang-menu{transition:opacity .01ms}}
 </style></head>
 <body>
 <div class="loader" id="loader" aria-hidden="true"><div class="loader-track"><div class="loader-bar"></div></div></div>
@@ -366,7 +379,7 @@ function layoutGrid(){const gy=parseFloat(getComputedStyle(grid).getPropertyValu
 document.addEventListener("contextmenu",e=>{if(e.target.closest("img"))e.preventDefault()});document.addEventListener("dragstart",e=>{if(e.target.closest("img"))e.preventDefault()});
 document.querySelector('#abCta')?.addEventListener('click',e=>{e.preventDefault();document.querySelector('[data-page="contato"]').click()});
 let gridTimer;const queueGrid=()=>{clearTimeout(gridTimer);gridTimer=setTimeout(layoutGrid,60)};grid.addEventListener("load",queueGrid,true);window.addEventListener("resize",queueGrid);document.addEventListener("click",queueGrid);if(window.ResizeObserver)new ResizeObserver(queueGrid).observe(grid);
-function render(){filters.innerHTML='';categories.forEach(cat=>{const b=document.createElement('button');b.className='filter'+(cat===active?' active':'');b.textContent=cat;b.onclick=()=>{active=cat;render();if(overlay.classList.contains('open'))closeProject();document.querySelector('[data-page="trabalhos"]').click();};filters.append(b);});const search=document.createElement('input');search.className='filter-search';search.type='search';search.placeholder='Buscar trabalho';search.setAttribute('aria-label','Buscar trabalhos pelo nome');search.value=searchTerm;search.addEventListener('input',()=>{searchTerm=search.value;if(overlay.classList.contains('open'))closeProject();const workSection=document.querySelector('#trabalhos');if(!workSection.classList.contains('active'))document.querySelector('[data-page="trabalhos"]').click();renderProjects();});filters.append(search);renderProjects();}
+function render(){filters.innerHTML='';categories.forEach(cat=>{const b=document.createElement('button');b.className='filter'+(cat===active?' active':'');b.textContent=cat;b.onclick=()=>{active=cat;render();if(overlay.classList.contains('open'))closeProject();document.querySelector('[data-page="trabalhos"]').click();};filters.append(b);});const search=document.createElement('input');search.className='filter-search';search.type='search';search.placeholder='Buscar trabalho';search.setAttribute('aria-label','Buscar trabalhos pelo nome');search.value=searchTerm;search.addEventListener('input',()=>{searchTerm=search.value;if(overlay.classList.contains('open'))closeProject();const workSection=document.querySelector('#trabalhos');if(!workSection.classList.contains('active'))document.querySelector('[data-page="trabalhos"]').click();renderProjects();});filters.append(search);if(window.langSwitch)filters.append(window.langSwitch);renderProjects();}
 // Sidebar list of every live project: hover slides the name to reveal its logo, the open project stays selected.
 function renderSideProjects(){const list=document.querySelector('#sideProjects');if(!list)return;list.innerHTML='';projects.forEach(p=>{const b=document.createElement('button');b.type='button';b.className='side-project';b.dataset.id=p.id;const icon=p.logo||p.image;b.innerHTML=`<span class="side-project-icon">${icon?`<img src="${safe(icon)}" alt="" loading="lazy">`:''}</span><span class="side-project-name">${safe(p.title)}</span>`;b.onclick=()=>openProject(p);list.append(b);});markSideProject(overlay.classList.contains('open')?currentSideProject:null)}
 let currentSideProject=null;
@@ -440,6 +453,81 @@ window.addEventListener('scroll',onScroll,{passive:true});if(ov)ov.addEventListe
 document.addEventListener('click',()=>setTimeout(()=>{lastY=curY();if(lastY<40)document.body.classList.remove('m-cats-hidden')},500));
 // Mirror the contact e-mail (filled from the CMS) into the mobile menu.
 const src=document.querySelector('.contact-email'),dst=document.querySelector('.m-email');const sync=()=>{if(src&&dst){dst.textContent=src.textContent;dst.href=src.href}};sync();if(src)new MutationObserver(sync).observe(src,{childList:true,characterData:true,subtree:true,attributes:true});
+})();
+</script>
+<script>
+// Site language: Portuguese (original) or English, chosen in the round button beside the search.
+(()=>{
+const DICT={
+'Menu':'Menu','Fechar':'Close','Designer Gráfico':'Graphic Designer','Trabalhos':'Work','Sobre eu':'About','Contato':'Contact',
+'Disponível para projetos selecionados.':'Available for select projects.',
+'Design com intenção,':'Design with intention,','ideias com identidade.':'ideas with identity.',
+'Sou Gustavo Oliveira, designer gráfico no Ceará, apaixonado por criar identidades visuais e soluções que juntam a comunicação com a essência de cada marca.':'I’m Gustavo Oliveira, a graphic designer from Ceará, Brazil, passionate about creating visual identities and solutions that connect communication with the essence of each brand.',
+'Minha base vem da produção gráfica: atuei como designer e arte-finalista de rótulos, cuidando da precisão técnica e da qualidade final de embalagens para impressão. Hoje sou designer gráfico no time de Marketing da Biódis e levo esse olhar para marcas que querem nascer, crescer e se comunicar com clareza.':'My background is in print production: I worked as a label designer and pre-press artist, taking care of the technical precision and final quality of packaging for print. Today I’m a graphic designer on the Marketing team at Biódis, and I bring that eye to brands that want to launch, grow and communicate clearly.',
+'Anos de experiência':'Years of experience','Empresas na trajetória':'Companies so far','Brasil':'Brazil',
+'Experiência':'Experience','2026 — Atual':'2026 — Present','Time de Marketing':'Marketing Team',
+'Designer gráfico do time de Marketing, criando as peças e os materiais visuais que dão forma à comunicação da marca.':'Graphic designer on the Marketing team, creating the pieces and visual materials that shape the brand’s communication.',
+'Arte-finalista (Designer)':'Pre-press Artist (Designer)',
+'Fechamento técnico e adequação de artes para impressão, convertendo layouts criativos em arquivos prontos para produção em massa. Domínio do ciclo completo de pré-impressão de rótulos e embalagens.':'Technical finishing and adaptation of artwork for print, turning creative layouts into files ready for mass production. Full command of the label and packaging pre-press cycle.',
+'Gráfica Digital':'Digital Print Shop',
+'Estágio → Designer e atendente → Caixa e supervisor geral':'Intern → Designer and customer service → Cashier and general supervisor',
+'Comecei como estagiário e fui contratado como designer. Em 2023 fui promovido a supervisor geral, somando experiência em atendimento ao público, gestão de redes sociais e produção gráfica.':'I started as an intern and was hired as a designer. In 2023 I was promoted to general supervisor, adding experience in customer service, social media management and print production.',
+'Criação':'Creation','Identidade visual':'Visual identity','Logotipos':'Logos','Estudo de briefing':'Briefing analysis','Ilustrações':'Illustrations',
+'Produção':'Production','Rótulos e embalagens':'Labels and packaging','Pré-impressão':'Pre-press','Arte-final':'Final artwork','Produção gráfica':'Print production',
+'Gestão':'Management','Comunicação':'Communication','Gestão de redes sociais':'Social media management','Atendimento ao público':'Customer service','Administração':'Administration',
+'Ferramentas':'Tools','Pacote Office':'Microsoft Office','Formação':'Education','Design Gráfico':'Graphic Design','Graduação':'Bachelor’s degree','Cursando':'In progress',
+'Design de Espaços Comerciais':'Commercial Space Design','Escola Britânica de Artes Criativas e Tecnologia':'British School of Creative Arts and Technology',
+'Multimídia':'Multimedia','Ensino técnico':'Technical course','Concluído':'Completed',
+'Vamos começar um projeto':'Let’s start a project',
+'Disponível para identidade visual, direção de arte e projetos freelance selecionados.':'Available for visual identity, art direction and select freelance projects.',
+'E-mail':'Email','Base':'Based in','Atendendo no Brasil e no exterior':'Working in Brazil and abroad','Redes':'Social',
+'Solicitação':'Inquiry','Nome':'Name','Projeto':'Project','Selecione um tipo':'Select a type','Direção de arte':'Art direction','Design para redes':'Social media design','Embalagem e editorial':'Packaging and editorial','Outro':'Other','Mensagem':'Message','Enviar mensagem':'Send message',
+'Sobre':'About','Créditos':'Credits','CLIENTE':'CLIENT','CATEGORIAS':'CATEGORIES','ANO':'YEAR',
+'Nenhum trabalho encontrado. Cadastre um trabalho como Live no CMS.':'No work found.',
+'Ir para trabalhos':'Go to work','Retrato do designer':'Portrait of the designer','Lista de trabalhos':'Work list',
+'Buscar trabalho':'Search work','Buscar trabalhos pelo nome':'Search work by name',
+'Seu nome':'Your name','voce@empresa.com':'you@company.com','Uma ou duas frases sobre o que você tem em mente.':'One or two sentences about what you have in mind.',
+'Gustavo Oliveira — Portfólio':'Gustavo Oliveira — Portfolio'
+};
+const ATTRS=['placeholder','aria-label','alt','title'];
+const read=()=>{try{return localStorage.getItem('site-lang')}catch(e){return null}};
+const save=v=>{try{localStorage.setItem('site-lang',v)}catch(e){}};
+let lang=read()==='en'?'en':'pt';
+const norm=t=>t.replace(/\s+/g,' ').trim();
+const textState=new WeakMap(),attrState=new WeakMap();
+const dynamic=()=>{const d={};const list=typeof projects!=='undefined'&&Array.isArray(projects)?projects:[];list.forEach(p=>{if(p.descEn&&p.desc)d[norm(p.desc)]=p.descEn;if(p.infoEn&&p.info)d[norm(p.info)]=p.infoEn;(p.cats||[]).forEach((c,i)=>{if(p.catsEn&&p.catsEn[i])d[c]=p.catsEn[i]})});return d};
+const tr=(text,d)=>{const k=norm(text);if(!k)return null;if(k in DICT)return DICT[k];if(k in d)return d[k];
+  if(k.includes(' · ')){const parts=k.split(' · '),out=parts.map(x=>DICT[x]??d[x]??x);if(out.some((x,i)=>x!==parts[i]))return out.join(' · ')}
+  let m;if((m=k.match(/^Capa de (.+)$/)))return 'Cover of '+m[1];if((m=k.match(/^(.+) — imagem (\d+)$/)))return m[1]+' — image '+m[2];return null};
+const skip=el=>!el||el.closest('script,style,[data-no-i18n]');
+const doText=(n,d)=>{if(skip(n.parentElement))return;let st=textState.get(n);if(!st||(n.nodeValue!==st.o&&n.nodeValue!==st.v)){st={o:n.nodeValue,v:null};textState.set(n,st)}
+  if(lang==='pt'){if(n.nodeValue!==st.o)n.nodeValue=st.o;st.v=null;return}
+  const t=tr(st.o,d);if(t==null)return;const v=st.o.match(/^\s*/)[0]+t+st.o.match(/\s*$/)[0];st.v=v;if(n.nodeValue!==v)n.nodeValue=v};
+const doAttrs=(el,d)=>{if(skip(el))return;let st=attrState.get(el);if(!st){st={};attrState.set(el,st)}ATTRS.forEach(a=>{if(!el.hasAttribute(a))return;const cur=el.getAttribute(a);let s=st[a];if(!s||(cur!==s.o&&cur!==s.v)){s=st[a]={o:cur,v:null}}
+  if(lang==='pt'){if(cur!==s.o)el.setAttribute(a,s.o);return}const t=tr(s.o,d);if(t!=null&&cur!==t){s.v=t;el.setAttribute(a,t)}})};
+const apply=root=>{const d=dynamic();if(root.nodeType===3){doText(root,d);return}if(root.nodeType!==1)return;
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode()))doText(n,d);
+  if(root.matches&&root.matches(ATTRS.map(a=>'['+a+']').join(',')))doAttrs(root,d);root.querySelectorAll(ATTRS.map(a=>'['+a+']').join(',')).forEach(el=>doAttrs(el,d))};
+// Button and menu.
+const wrap=document.createElement('div');wrap.className='lang-switch';wrap.setAttribute('data-no-i18n','');
+wrap.innerHTML='<button class="lang-btn" type="button" aria-haspopup="menu" aria-expanded="false"></button>';
+const btn=wrap.firstChild;
+const menu=document.createElement('div');menu.className='lang-menu';menu.setAttribute('role','menu');menu.setAttribute('data-no-i18n','');
+menu.innerHTML='<button class="lang-option" type="button" role="menuitemradio" data-lang="pt">Português (BR)</button><button class="lang-option" type="button" role="menuitemradio" data-lang="en">English</button>';
+document.body.append(menu);window.langSwitch=wrap;
+const filtersEl=document.querySelector('#filters');if(filtersEl&&filtersEl.children.length)filtersEl.append(wrap);
+const place=()=>{const r=btn.getBoundingClientRect(),w=menu.offsetWidth||178;let left=Math.min(r.right-w,window.innerWidth-w-12);left=Math.max(12,left);menu.style.left=left+'px';menu.style.top=(r.bottom+8)+'px'};
+const openMenu=open=>{menu.classList.toggle('open',open);btn.setAttribute('aria-expanded',String(open));if(open){place();(menu.querySelector('[aria-checked="true"]')||menu.firstChild).focus({preventScroll:true})}};
+btn.addEventListener('click',e=>{e.stopPropagation();openMenu(!menu.classList.contains('open'))});
+menu.addEventListener('click',e=>{const o=e.target.closest('.lang-option');if(!o)return;e.stopPropagation();setLang(o.dataset.lang);openMenu(false);btn.focus({preventScroll:true})});
+document.addEventListener('click',e=>{if(!menu.contains(e.target))openMenu(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.classList.contains('open')){openMenu(false);btn.focus({preventScroll:true})}});
+window.addEventListener('scroll',()=>openMenu(false),{passive:true});window.addEventListener('resize',()=>openMenu(false));
+const sync=()=>{btn.textContent=lang==='en'?'EN':'PT';btn.setAttribute('aria-label',lang==='en'?'Language: English':'Idioma: Português');menu.querySelectorAll('.lang-option').forEach(o=>o.setAttribute('aria-checked',String(o.dataset.lang===lang)));document.documentElement.lang=lang==='en'?'en':'pt-BR';
+  const t=document.querySelector('title');if(t){if(!t.dataset.pt)t.dataset.pt=t.textContent;t.textContent=lang==='en'?(DICT[t.dataset.pt]||t.dataset.pt):t.dataset.pt}};
+const setLang=v=>{lang=v==='en'?'en':'pt';save(lang);sync();apply(document.body)};
+new MutationObserver(ms=>{if(lang==='pt')return;const d=dynamic();ms.forEach(m=>m.addedNodes.forEach(n=>{if(n.nodeType===3)doText(n,d);else if(n.nodeType===1)apply(n)}))}).observe(document.body,{childList:true,subtree:true});
+sync();if(lang==='en')apply(document.body);
 })();
 </script>
 </body></html>

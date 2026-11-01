@@ -5,10 +5,12 @@
   "cover": "/media/01-capa-feed.png",
   "hero": "/media/01-capa1.png",
   "description": "A ACP, Ailton Construções e Pavimentações, é uma empresa de engenharia especializada em obras de construção e pavimentação, que entrega projetos sólidos, no prazo e com acabamento de qualidade.",
+  "description_en": "ACP (Ailton Construções e Pavimentações) is an engineering company specializing in construction and paving works, delivering solid projects on time and with quality finishes.",
   "categories": [
     "data/categories/identidade-visual.json"
   ],
   "info": "A ACP nasceu da experiência de campo e do compromisso com obras bem executadas. Atua em construções e pavimentações urbanas, viárias e industriais, do planejamento à entrega final, com equipe própria, maquinário moderno e controle rigoroso de qualidade. Sua identidade visual reflete esse DNA: o laranja, cor de sinalização e de obra em andamento, une-se ao cinza do asfalto e a um símbolo geométrico em forma de cubo, que remete à estrutura, à precisão e à solidez. A tipografia, firme e direta, reforça a comunicação clara de quem prefere mostrar resultado a prometer. Sob a ideia de ser especialista em construções e pavimentações, a ACP constrói caminhos duradouros, com responsabilidade técnica e respeito ao cliente.",
+  "info_en": "ACP was born from field experience and a commitment to well-executed work. It handles urban, road and industrial construction and paving, from planning to final delivery, with its own team, modern machinery and strict quality control. Its visual identity reflects this DNA: orange, the color of road signs and work in progress, joins the gray of asphalt and a cube-shaped geometric symbol that evokes structure, precision and solidity. The firm, direct typography reinforces the clear communication of a company that would rather show results than make promises. Built on the idea of being a specialist in construction and paving, ACP builds lasting paths, with technical responsibility and respect for the client.",
   "client": "Ailton Costa",
   "credits": "Luiz Gustavo",
   "slug": "acp",

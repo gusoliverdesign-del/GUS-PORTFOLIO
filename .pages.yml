@@ -17,6 +17,10 @@ content:
         label: Título
         type: string
         required: true
+      - name: title_en
+        label: Título em inglês
+        description: Aparece quando o site está em inglês. Se ficar vazio, usa o título em português.
+        type: string
       - name: status
         label: Status
         type: select
@@ -73,6 +77,10 @@ content:
       - name: description
         label: Descrição
         type: text
+      - name: description_en
+        label: Descrição em inglês
+        description: Aparece quando o site está em inglês. Se ficar vazio, usa a descrição em português.
+        type: text
       - name: categories
         label: Categoria
         type: reference
@@ -83,6 +91,10 @@ content:
           label: "{primary}"
       - name: info
         label: Informação
+        type: text
+      - name: info_en
+        label: Informação em inglês
+        description: Aparece quando o site está em inglês. Se ficar vazio, usa a informação em português.
         type: text
       - name: client
         label: Cliente

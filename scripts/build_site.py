@@ -38,6 +38,7 @@ def main() -> None:
     works_dir = DATA / "work"
     media_index_dir = DATA / "media-index"
     categories = {}
+    categories_en = {}
 
     for path in sorted(categories_dir.glob("*.json")):
         category = read_json(path)
@@ -48,6 +49,7 @@ def main() -> None:
             categories[f"data/categories/{path.name}"] = label
             categories[path.stem] = label
             categories[label] = label
+            categories_en[label] = str(category.get("title_en") or "").strip() or label
 
     projects = []
     media_records = {}
@@ -73,11 +75,14 @@ def main() -> None:
             "status": "Live",
             "year": work.get("year", ""),
             "cats": category_names,
+            "catsEn": [categories_en.get(name, name) for name in category_names],
             "image": asset_path(work.get("cover")),
             "logo": asset_path(work.get("logo")),
             "heroImage": asset_path(work.get("hero")) or asset_path(work.get("cover")),
             "desc": work.get("description", ""),
             "info": work.get("info", ""),
+            "descEn": work.get("description_en", ""),
+            "infoEn": work.get("info_en", ""),
             "client": work.get("client", ""),
             "credits": work.get("credits", ""),
             "gallery": gallery,

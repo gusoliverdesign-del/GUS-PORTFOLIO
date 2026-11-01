@@ -5,11 +5,13 @@
   "cover": "/media/download.gif",
   "hero": "/media/ativo-3-1.png",
   "description": "A Bem Quentim é uma cafeteria nordestina em Eusébio, no Ceará, que aquece o corpo com café fresquinho e a alma com afeto, cultura e memória.",
+  "description_en": "Bem Quentim is a Northeastern Brazilian coffee shop in Eusébio, Ceará, that warms the body with freshly brewed coffee and the soul with affection, culture and memory.",
   "categories": [
     "data/categories/identidade-visual.json",
     "data/categories/naming.json"
   ],
   "info": "A Bem Quentim traduz em nome e em experiência o aconchego, a tradição e o café passado na hora, servido com carinho e sotaque. Sua identidade é vibrante e cheia de personalidade, com o verde da vegetação, o amarelo do sol e o vermelho das panelas de barro, unidos em grafismos que remetem às festas populares e à culinária regional. A tipografia mistura a espontaneidade da fala popular com o cuidado artesanal do design. Sob o slogan “Meu povo, o café tá pronto!”, cada xícara homenageia a cultura nordestina e o calor humano da região.",
+  "info_en": "Bem Quentim turns coziness, tradition and freshly brewed coffee, served with care and a local accent, into both its name and its experience. Its identity is vibrant and full of personality, bringing together the green of the vegetation, the yellow of the sun and the red of clay pots in graphics that evoke popular festivals and regional cuisine. The typography blends the spontaneity of everyday speech with the handcrafted care of design. Under the slogan “Meu povo, o café tá pronto!” (“Folks, the coffee’s ready!”), every cup honors Northeastern culture and the warmth of the region’s people.",
   "client": "Gabriel Freitas",
   "credits": "Luiz Gustavo",
   "slug": "bemquentim",
