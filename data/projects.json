@@ -211,5 +211,59 @@
       "media/2102-1.png",
       "media/22-1.png"
     ]
+  },
+  {
+    "id": "ricardocell",
+    "title": "Ricardo Cell",
+    "status": "Live",
+    "year": "2025",
+    "cats": [
+      "Identidade Visual"
+    ],
+    "catsEn": [
+      "Visual Identity"
+    ],
+    "image": "media/01-capa-feed-1.png",
+    "logo": "media/01-capa-feed-3.png",
+    "heroImage": "media/01-capa-8.png",
+    "desc": "A Ricardo Cell é uma assistência técnica em Eusébio, no Ceará, especializada em celulares, notebooks e tablets, com reparo rápido, transparente e com garantia.",
+    "info": "Ricardo Cell is a repair shop in Eusébio, Ceará, specializing in smartphones, laptops, and tablets, offering fast, transparent repairs backed by a warranty.",
+    "descEn": "Ricardo Cell was created for people who can’t afford to be without their device. Based in Eusébio, it services smartphones, laptops, and tablets, with screen and battery replacement, motherboard repair, cleaning, formatting, and system updates. The service is close and straightforward: clear diagnostics, transparent quotes, and quality parts, always with a warranty on the work. The brand’s communication follows the same logic, with a tech-driven look, clean typography, and colors that convey trust and speed. At Ricardo Cell, every device goes back to its owner working the way it should.",
+    "infoEn": "Ricardo Cell was created for people who can’t afford to be without their device. Based in Eusébio, it services smartphones, laptops, and tablets, with screen and battery replacement, motherboard repair, cleaning, formatting, and system updates. The service is close and straightforward: clear diagnostics, transparent quotes, and quality parts, always with a warranty on the work. The brand’s communication follows the same logic, with a tech-driven look, clean typography, and colors that convey trust and speed. At Ricardo Cell, every device goes back to its owner working the way it should.",
+    "client": "Ricardo Cell",
+    "credits": "Luiz Gustavo",
+    "gallery": [
+      "media/01.png",
+      "media/0101-6.png",
+      "media/0102-6.png",
+      "media/02-7.png",
+      "media/0301-6.png",
+      "media/0302-6.png",
+      "media/04-8.png",
+      "media/0501-7.png",
+      "media/0502-6.png",
+      "media/06-6.png",
+      "media/0701-10.png",
+      "media/0702-7.png",
+      "media/ativo-1.png",
+      "media/0901-10.png",
+      "media/0902-9.png",
+      "media/10-8.png",
+      "media/1101-9.png",
+      "media/1102-10.png",
+      "media/12-6.png",
+      "media/1301-7.png",
+      "media/1302-7.png",
+      "media/14-6.png",
+      "media/1501-8.png",
+      "media/1502-8.png",
+      "media/16-4.png",
+      "media/1701-8.png",
+      "media/1702-8.png",
+      "media/18-6.png",
+      "media/1901-2.png",
+      "media/1902-2.png",
+      "media/20-3.png"
+    ]
   }
 ]
