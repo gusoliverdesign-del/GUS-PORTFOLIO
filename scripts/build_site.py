@@ -104,6 +104,15 @@ def main() -> None:
                 "asset": image,
             }
 
+    # Feed order comes from the "Ordem dos trabalhos" list in the CMS; works not listed go last.
+    order_path = DATA / "order.json"
+    order = read_json(order_path).get("works", []) if order_path.exists() else []
+    position = {}
+    for reference in order:
+        slug = Path(str(reference)).stem
+        position.setdefault(slug, len(position))
+    projects.sort(key=lambda project: position.get(project["id"], len(position)))
+
     write_json(DATA / "projects.json", projects)
     media_index_dir.mkdir(parents=True, exist_ok=True)
     for old_record in media_index_dir.glob("*.json"):

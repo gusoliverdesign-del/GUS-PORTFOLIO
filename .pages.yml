@@ -122,6 +122,24 @@ content:
       fields: [title, status, year, categories]
       search: [title, slug]
 
+  - name: order
+    label: Ordem dos trabalhos
+    type: file
+    path: data/order.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: works
+        label: Ordem no feed
+        description: "Arraste pelos pontinhos para mudar a ordem em que os trabalhos aparecem no feed e no painel. Trabalhos que não estiverem na lista aparecem no final."
+        type: reference
+        list: true
+        options:
+          collection: work
+          value: "{fields.slug}"
+          label: "{primary}"
+
   - name: media
     label: Media (lista automática)
     type: collection
